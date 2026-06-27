@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', 'Outfit', sans-serif;
+  }
+  
+  body {
+    @apply transition-colors duration-300 bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-slate-100;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Styles */
+  .glass-card {
+    @apply bg-white/70 dark:bg-[#161e2e]/70 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 shadow-premium dark:shadow-premium-dark rounded-2xl;
+  }
+  
+  .glass-nav {
+    @apply bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/50;
+  }
+
+  .glass-sidebar {
+    @apply bg-white/90 dark:bg-[#0b0f19]/90 backdrop-blur-md border-r border-slate-200/50 dark:border-slate-800/50;
+  }
+
+  .interactive-glow {
+    position: relative;
+  }
+
+  .interactive-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .interactive-glow:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Custom styles for animations and SVG elements */
+.dust-particle {
+  pointer-events: none;
+  position: absolute;
+  background: radial-gradient(circle, rgba(156, 163, 175, 0.3) 0%, rgba(156, 163, 175, 0) 70%);
+  border-radius: 50%;
+}
+
+.map-marker-pulse {
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+    opacity: 1;
+  }
+  80%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
